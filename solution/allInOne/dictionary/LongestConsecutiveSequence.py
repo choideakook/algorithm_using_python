@@ -3,16 +3,13 @@
 
 def solution(nums):
     answer = 0
-    map = {}
-
-    for num in nums:
-        map[num] = None
+    num_set = set(nums)
 
     for num in nums:
         count = 1
-        if num - 1 not in map:
+        if num - 1 not in num_set:
             next = num + 1
-            while next in map:
+            while next in num_set:
                 count += 1
                 next += 1
 
