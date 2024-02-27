@@ -14,8 +14,4 @@ for i in range(N):
         answer[stack.pop()] = A[i]
     stack.append(i)
 
-result = ""
-for i in answer:
-    result += str(i) + " "
-
-print(result)
+print(*answer)
