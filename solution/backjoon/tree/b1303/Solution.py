@@ -26,7 +26,7 @@ visited = [[False] * N for _ in range(M)]
 table, answer = [], [0, 0]
 
 for i in range(M):
-    table.append(list(input().strip()))
+    table.append(list(input()))
 
 for i in range(M):
     for j in range(N):
