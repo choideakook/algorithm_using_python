@@ -3,14 +3,15 @@
 # A = start ( 1 ~ B )
 # B = goal ( A ~ 10^9 )
 
+from collections import deque
 import sys
 input = sys.stdin.readline
 
-def dfs():
-    Q = []
+def bfs():
+    Q = deque()
     Q.append(B)
     while Q:
-        now = Q.pop(0)
+        now = Q.popleft()
         if now == A: return visited[A]
         if now % 10 == 1:
             num = int(str(now)[:-1])
@@ -24,5 +25,5 @@ def dfs():
 
 A, B = map(int, input().split())
 visited = [1] * (B + 1)
-print(dfs())
+print(bfs())
 
