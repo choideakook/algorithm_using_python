@@ -8,21 +8,18 @@ input = sys.stdin.readline
 
 def dfs():
     Q = []
-    Q.append(A)
+    Q.append(B)
     while Q:
         now = Q.pop(0)
-        square = now * 2
-        add = (now * 10) + 1
-        if square == B or add == B:
-            return visited[B] + visited[now]
-        if square < B:
-            if visited[square] == 1:
-                visited[square] += visited[now]
-                Q.append(square)
-        if add < B:
-            if visited[add] == 1:
-                visited[add] += visited[now]
-                Q.append(add)
+        if now == A: return visited[A]
+        if now % 10 == 1:
+            num = int(str(now)[:-1])
+            visited[num] += visited[now]
+            Q.append(num)
+        if now % 2 == 0:
+            if now // 2 >= A:
+                visited[now // 2] += visited[now]
+                Q.append(now // 2)
     return -1
 
 A, B = map(int, input().split())
