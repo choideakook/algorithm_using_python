@@ -5,6 +5,7 @@
 # K = target ( 1 ~ N * M )
 
 import sys
+sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
 def dfs(now):
