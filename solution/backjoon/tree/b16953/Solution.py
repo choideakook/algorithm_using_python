@@ -9,21 +9,18 @@ input = sys.stdin.readline
 
 def bfs():
     Q = deque()
-    Q.append(B)
+    Q.append((B, 1))
     while Q:
-        now = Q.popleft()
-        if now == A: return visited[A]
-        if now % 10 == 1:
-            num = int(str(now)[:-1])
-            visited[num] += visited[now]
-            Q.append(num)
-        if now % 2 == 0:
-            if now // 2 >= A:
-                visited[now // 2] += visited[now]
-                Q.append(now // 2)
+        now, count = Q.popleft()
+        if now == A:
+            return count
+        if now > A:
+            if now % 10 == 1:
+                Q.append((int(str(now)[:-1]), count + 1))
+            if now % 2 == 0:
+                Q.append((now // 2, count + 1))
     return -1
 
 A, B = map(int, input().split())
-visited = [1] * (B + 1)
 print(bfs())
 
