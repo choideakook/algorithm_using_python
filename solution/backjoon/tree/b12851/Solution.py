@@ -8,34 +8,26 @@ import sys
 input = sys.stdin.readline
 
 N, K = map(int, input().split())
-visited = [False] * 100001
-visited[K] = True
+visited = [0] * 100001
 
 Q = deque()
-Q.append((K, 0))
+Q.append(N)
 
 answer = [0, 0]
 while Q:
-    now, count = Q.popleft()
-    visited[now] = True
+    now = Q.popleft()
 
-    if answer[1] > 0 and answer[0] < count:
-        break
-    if answer[1] > 0 and now == N:
-        answer[1] += 1
-        continue
-    elif now == N:
-        answer[0] = count
+    if now == K:
+        answer[0] = visited[now]
         answer[1] += 1
         continue
 
-    if now % 2 == 0:
-        if not visited[now // 2]:
-            Q.append((now // 2, count + 1))
-    if now - 1 >= 0:
-        Q.append((now - 1, count + 1))
-    if now + 1 <= 100000:
-        Q.append((now + 1, count + 1))
+    for i in [now + 1, now - 1, now * 2]:
+        if answer[1] > 0 and answer[0] <= visited[now]:
+            break
+        if 0 <= i <= 100000 and (visited[i] == 0 or visited[i] == visited[now] + 1):
+            visited[i] = visited[now] + 1
+            Q.append(i)
 
 print(answer[0])
 print(answer[1])
