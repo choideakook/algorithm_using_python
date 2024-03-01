@@ -23,9 +23,11 @@ while Q:
         break
     if answer[1] > 0 and now == N:
         answer[1] += 1
+        continue
     elif now == N:
         answer[0] = count
         answer[1] += 1
+        continue
 
     if now % 2 == 0:
         if not visited[now // 2]:
