@@ -11,12 +11,10 @@ dy, dx = [1, 0, -1, 0], [0, 1, 0, -1]
 M, N = map(int, input().split())
 
 Q = deque()
-table = [[0] * M for _ in range(N)]
+table = [list(map(int, input().split())) for _ in range(N)]
 for y in range(N):
-    arr = list(map(int, input().split()))
     for x in range(M):
-        table[y][x] = arr[x]
-        if arr[x] == 1:
+        if table[y][x] == 1:
             Q.append([y, x])
 
 d_day = 0
